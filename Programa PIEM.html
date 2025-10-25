@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa Intensivo de Enfermedades Metabólicas - Clínica EMIC</title>
+  <style>
+    :root {
+      --esmeralda-oscuro: #00695c;
+      --esmeralda-principal: #009688;
+      --esmeralda-claro: #4db6ac;
+      --esmeralda-muy-claro: #e0f2f1;
+      --texto-oscuro: #263238;
+      --texto-claro: #ffffff;
+      --gris-claro: #f5f5f5;
+      --dorado: #FFD700;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--texto-oscuro);
+      background-color: #f9f9f9;
+    }
+    
+    /* Header */
+    header {
+      background: 
+        linear-gradient(135deg, rgba(0, 105, 92, 0.65) 0%, rgba(0, 150, 136, 0.65) 100%),
+        url('https://media.istockphoto.com/id/512686460/es/foto/de-estilo-de-vida-saludable-concepto-de-dieta-y-ejercicios.jpg?s=612x612&w=0&k=20&c=GNfwWIPgunHjUOhqmelrNp8zXryarbpQMNT25LkFSj4=');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--texto-claro);
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Efecto de partículas sutiles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+    
+    .particle:nth-child(1) {
+      width: 5px;
+      height: 5px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .particle:nth-child(2) {
+      width: 8px;
+      height: 8px;
+      top: 60%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+    
+    .particle:nth-child(3) {
+      width: 6px;
+      height: 6px;
+      top: 40%;
+      left: 70%;
+      animation-delay: 4s;
+    }
+    
+    .particle:nth-child(4) {
+      width: 7px;
+      height: 7px;
+      top: 80%;
+      left: 20%;
+      animation-delay: 6s;
+    }
+    
+    .particle:nth-child(5) {
+      width: 4px;
+      height: 4px;
+      top: 30%;
+      left: 50%;
+      animation-delay: 8s;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) translateX(20px);
+        opacity: 0;
+      }
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+    
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo-image {
+      width: 160px;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .logo-image img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    
+    .especialistas {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      text-align: center;
+      font-weight: 300;
+    }
+    
+    header h1 {
+      margin: 20px 0;
+      font-size: 3rem;
+      max-width: 900px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    
+    header p {
+      font-size: 1.4rem;
+      margin-top: 20px;
+      max-width: 800px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    
+    /* Navegación */
+    nav {
+      background: var(--esmeralda-oscuro);
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    nav a {
+      color: var(--texto-claro);
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--esmeralda-claro);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--esmeralda-claro);
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    /* Secciones */
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    h2 {
+      color: var(--esmeralda-oscuro);
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 2.5rem;
+      position: relative;
+      font-weight: 600;
+    }
+    
+    h2:after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--esmeralda-principal);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    
+    /* Servicios */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .card {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 35px 25px;
+      text-align: center;
+      background: white;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    
+    .card h3 {
+      margin-top: 0;
+      color: var(--esmeralda-oscuro);
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+    
+    /* Sección Estudios Complementarios - MEJORADA */
+    .estudios-complementarios {
+      background-color: var(--esmeralda-muy-claro);
+      border-radius: 12px;
+      padding: 60px 40px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    .estudios-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .estudios-text {
+      max-width: 900px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .estudios-text p {
+      margin-bottom: 20px;
+    }
+    
+    .estudios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+      width: 100%;
+    }
+    
+    .estudio-item {
+      background: white;
+      border-radius: 10px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .estudio-item:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+    }
+    
+    .estudio-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .estudio-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--esmeralda-muy-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      color: var(--esmeralda-principal);
+      font-size: 1.8rem;
+      border: 2px solid var(--esmeralda-claro);
+    }
+    
+    .estudio-item h3 {
+      color: var(--esmeralda-oscuro);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .estudio-item p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--texto-oscuro);
+    }
+    
+    .colaboracion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    
+    .colaboracion-text {
+      font-style: italic;
+      color: var(--esmeralda-oscuro);
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .sanatorio-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .sanatorio-logo-img {
+      width: 200px;
+      height: auto;
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Equipo */
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .team-member {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .team-member:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    
+    .member-icon {
+      width: 90px;
+      height: 90px;
+      background: var(--esmeralda-muy-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--esmeralda-principal);
+      font-size: 2.2rem;
+      border: 3px solid var(--esmeralda-claro);
+      overflow: hidden;
+    }
+    
+    /* Contenedor especial para la foto del Lic. Federico Sanchez - MÁS GRANDE */
+    .member-icon.photo-large {
+      width: 110px;
+      height: 110px;
+    }
+    
+    .member-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .team-member h3 {
+      color: var(--esmeralda-oscuro);
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+    
+    .team-member .role {
+      color: var(--esmeralda-principal);
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    /* Testimonios */
+    .testimonials {
+      background: var(--esmeralda-muy-claro);
+      border-radius: 12px;
+      padding: 50px 40px;
+      margin-top: 40px;
+      position: relative;
+    }
+    
+    .testimonials:before {
+      content: '"';
+      font-size: 120px;
+      color: var(--esmeralda-claro);
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+    
+    .testimonial {
+      margin-bottom: 40px;
+      font-style: italic;
+      position: relative;
+      padding-left: 30px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .testimonial:before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--esmeralda-claro);
+      position: absolute;
+      left: 0;
+      top: -10px;
+    }
+    
+    .testimonial-author {
+      font-weight: bold;
+      margin-top: 15px;
+      color: var(--esmeralda-oscuro);
+      font-style: normal;
+    }
+    
+    /* Mapa */
+    .map-container {
+      margin: 40px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+    
+    /* CTA */
+    .cta {
+      text-align: center;
+      margin-top: 40px;
+      background: var(--esmeralda-muy-claro);
+      padding: 50px 40px;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--esmeralda-principal);
+      color: white;
+      padding: 16px 35px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s;
+      margin: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: var(--esmeralda-oscuro);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--esmeralda-principal);
+      border: 2px solid var(--esmeralda-principal);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--esmeralda-principal);
+      color: white;
+    }
+    
+    /* Botón flotante de Instagram */
+    .instagram-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 95px;
+      right: 25px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease-in-out;
+      animation: pulse-instagram 2s infinite;
+    }
+    
+    .instagram-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .instagram-float svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+    
+    @keyframes pulse-instagram {
+      0% {
+        box-shadow: 0 0 0 0 rgba(225, 48, 108, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(225, 48, 108, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(225, 48, 108, 0);
+      }
+    }
+    
+    /* Tooltip para el botón de Instagram */
+    .instagram-tooltip {
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .instagram-float:hover .instagram-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Botón flotante de WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease-in-out;
+      animation: pulse 2s infinite;
+    }
+    
+    .whatsapp-float:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .whatsapp-float svg {
+      width: 35px;
+      height: 35px;
+      fill: white;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    
+    /* Tooltip para el botón de WhatsApp */
+    .whatsapp-tooltip {
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .whatsapp-float:hover .whatsapp-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--esmeralda-oscuro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 60px 20px;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: left;
+    }
+    
+    .footer-section h3 {
+      color: var(--esmeralda-claro);
+      margin-bottom: 25px;
+      font-size: 1.4rem;
+    }
+    
+    .footer-section p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    .copyright {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    /* --- Navegación lateral SOLO en móviles --- */
+    .menu-toggle {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      /* Ocultar navegación original en móviles */
+      nav {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        height: 100%;
+        width: 240px;
+        background: var(--esmeralda-oscuro);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 70px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      }
+      
+      nav.show {
+        left: 0;
+      }
+      
+      nav a {
+        display: block;
+        margin: 15px 20px;
+        font-size: 1.2rem;
+        width: calc(100% - 40px);
+      }
+      
+      .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 28px;
+        background: var(--esmeralda-principal);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        z-index: 1101;
+        border: none;
+      }
+      
+      /* Ajustes para el header en móviles */
+      header {
+        padding-top: 80px; /* Para compensar el espacio del botón hamburguesa */
+      }
+      
+      .header-container {
+        text-align: center;
+      }
+      
+      .logo-container {
+        flex-direction: column;
+      }
+      
+      .logo-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 140px;
+        height: 140px;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 60px 20px;
+      }
+      
+      .map-container iframe {
+        height: 300px;
+      }
+      
+      .especialistas {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      
+      header {
+        min-height: 450px;
+        padding: 40px 20px;
+        background-attachment: scroll;
+      }
+      
+      header h1 {
+        font-size: 2.2rem;
+      }
+      
+      header p {
+        font-size: 1.2rem;
+      }
+      
+      .estudios-complementarios {
+        padding: 40px 20px;
+      }
+      
+      .estudios-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .sanatorio-logo-img {
+        width: 150px;
+      }
+      
+      .member-icon {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .member-icon.photo-large {
+        width: 95px;
+        height: 95px;
+      }
+      
+      /* Ajustes para los botones flotantes en móviles */
+      .instagram-float {
+        width: 55px;
+        height: 55px;
+        bottom: 85px;
+        right: 20px;
+      }
+      
+      .instagram-float svg {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+      }
+      
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-image {
+        width: 120px;
+        height: 120px;
+      }
+      
+      header {
+        min-height: 400px;
+        padding: 30px 15px;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        display: block;
+        margin: 15px auto;
+        width: 90%;
+        max-width: 300px;
+      }
+      
+      .estudios-complementarios {
+        padding: 30px 15px;
+      }
+      
+      .sanatorio-logo-img {
+        width: 120px;
+      }
+      
+      .estudio-item {
+        padding: 20px 15px;
+      }
+      
+      .member-icon {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .member-icon.photo-large {
+        width: 85px;
+        height: 85px;
+      }
+      
+      .instagram-float {
+        width: 50px;
+        height: 50px;
+        bottom: 80px;
+        right: 15px;
+      }
+      
+      .instagram-float svg {
+        width: 25px;
+        height: 25px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón flotante de Instagram -->
+  <a href="https://www.instagram.com/emiccons/" class="instagram-float" target="_blank" aria-label="Síguenos en Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+    </svg>
+    <span class="instagram-tooltip">Síguenos en Instagram</span>
+  </a>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/543426130299" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+    <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+  </a>
+
+  <header>
+    <!-- Partículas sutiles de fondo -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    
+    <div class="header-container">
+      <div class="logo-container">
+        <div class="logo-image">
+          <img src="https://i.postimg.cc/rmGvV1sx/imagen-jpeg.jpg" alt="Clínica EMIC - Especialistas en Medicina Interna">
+        </div>
+        <div class="especialistas">Especialistas en Medicina Interna</div>
+      </div>
+      <h1>Programa Intensivo de Enfermedades Metabólicas</h1>
+      <p>Tratamiento ambulatorio especializado para el manejo integral de obesidad, diabetes, hipertensión y otras condiciones metabólicas. Nuestro programa intensivo se realiza de forma ambulatoria, permitiéndote continuar con tus actividades diarias mientras recibes atención médica especializada y seguimiento personalizado.</p>
+    </div>
+  </header>
+
+  <!-- Botón hamburguesa para móviles -->
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <!-- Navegación -->
+  <nav id="mainNav">
+    <a href="#presentacion">Sobre el programa</a>
+    <a href="#equipo">Nuestro equipo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#estudios">Estudios complementarios</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="presentacion">
+    <h2>Sobre nuestro programa</h2>
+    <p>En Clínica EMIC hemos desarrollado un programa integral para el manejo de enfermedades metabólicas, combinando la experiencia de profesionales de la salud en un enfoque personalizado y basado en evidencia científica.</p>
+    <p>Nuestro programa está diseñado para personas con condiciones como obesidad, diabetes tipo 2, síndrome metabólico, dislipidemias e hipertensión arterial, ofreciendo un seguimiento continuo y adaptado a las necesidades individuales de cada persona.</p>
+    
+    <div class="cta">
+      <h3>¿Necesitas ayuda con tu condición metabólica?</h3>
+      <p>Nuestro equipo interdisciplinario está listo para acompañarte en tu proceso de salud</p>
+      <a class="btn" href="#contacto">Solicitar primera consulta</a>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <h2>Nuestro equipo interdisciplinario</h2>
+    <p>Contamos con especialistas en diferentes áreas para ofrecerte un tratamiento integral</p>
+    
+    <div class="team">
+      <div class="team-member">
+        <div class="member-icon">👩‍⚕️</div>
+        <h3>Dra. Alejandra Gaydou</h3>
+        <div class="role">Médica Clínica</div>
+        <p>Especialista en diagnóstico y tratamiento de enfermedades metabólicas con enfoque integral. Más de 15 años de experiencia en el manejo de personas con condiciones crónicas.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">🍎</div>
+        <h3>Lic. María González</h3>
+        <div class="role">Nutricionista</div>
+        <p>Planificación de dietas personalizadas según condición metabólica y preferencias alimentarias. Especializada en educación nutricional para cambios sostenibles.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon photo-large">
+          <img src="https://i.postimg.cc/QVGcxTzG/Whats-App-Image-2025-09-28-at-17-27-44.jpg" alt="Lic. Federico Sanchez">
+        </div>
+        <h3>Lic. Federico Sanchez</h3>
+        <div class="role">Licenciado en Educación Física</div>
+        <p>Especialista en prescripción de ejercicio seguro para condiciones metabólicas. Diseña rutinas adaptadas a cada persona considerando sus limitaciones y objetivos.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">🧠</div>
+        <h3>Lic. Patricia López</h3>
+        <div class="role">Psicóloga</div>
+        <p>Apoyo emocional y modificación de conductas relacionadas con la alimentación y el estilo de vida. Terapia cognitivo-conductual aplicada a cambios de hábitos.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">❤️</div>
+        <h3>Jessica Sanchez</h3>
+        <div class="role">Educadora</div>
+        <p>Control de parámetros vitales, administración de tratamientos y educación en autocuidado. Seguimiento continuo del estado de salud de nuestras personas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <h2>Nuestros servicios</h2>
+    <div class="services">
+      <div class="card">
+        <h3>📊 Evaluación Integral Inicial</h3>
+        <p>Valoración médica, nutricional, física y psicológica para establecer un plan personalizado adaptado a tus necesidades específicas.</p>
+      </div>
+      <div class="card">
+        <h3>👩‍⚕️ Seguimiento Médico Continuo</h3>
+        <p>Control periódico con nuestra médica clínica para ajustar tratamiento según evolución y resultados obtenidos.</p>
+      </div>
+      <div class="card">
+        <h3>🍎 Plan Nutricional Personalizado</h3>
+        <p>Dietas adaptadas a tu condición metabólica, preferencias alimentarias, estilo de vida y objetivos de salud.</p>
+      </div>
+      <div class="card">
+        <h3>💪 Programa de Actividad Física</h3>
+        <p>Rutinas de ejercicio seguras y efectivas según tu condición física, con progresión gradual y supervisión profesional.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 Soporte Psicológico</h3>
+        <p>Sesiones individuales para trabajar aspectos emocionales, manejo del estrés y modificación de hábitos no saludables.</p>
+      </div>
+      <div class="card">
+        <h3>📈 Monitorización y Seguimiento</h3>
+        <p>Sistema de seguimiento continuo con tecnología avanzada (InBody y dinamómetro de mano) para controlar tu progreso y ajustar el tratamiento cuando sea necesario.</p>
+      </div>
+      <div class="card">
+        <h3>🎓 Talleres Educativos</h3>
+        <p>Sesiones grupales sobre autocuidado, conducta alimentaria y manejo de enfermedades metabólicas para empoderarte en tu proceso de salud.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Estudios Complementarios - MEJORADA con las tarjetas específicas y logo real -->
+  <section id="estudios">
+    <h2>Estudios y Test Complementarios</h2>
+    <div class="estudios-complementarios">
+      <div class="estudios-content">
+        <div class="estudios-text">
+          <p>Para garantizar un diagnóstico preciso y un tratamiento personalizado, nuestro programa incluye una amplia gama de estudios complementarios que nos permiten evaluar de manera integral tu estado de salud metabólica.</p>
+          <p>Estos estudios se realizan en colaboración con <strong>Sanatorio Garay</strong>, institución de referencia en la ciudad, asegurando la máxima calidad y precisión en los resultados.</p>
+        </div>
+        
+        <div class="estudios-grid">
+          <div class="estudio-item">
+            <div class="estudio-icon">❤️</div>
+            <h3>Evaluación Cardiovascular</h3>
+            <p>Estudios especializados para evaluar la salud del corazón y sistema circulatorio, incluyendo electrocardiograma, ecocardiograma y pruebas de esfuerzo.</p>
+          </div>
+          <div class="estudio-item">
+            <div class="estudio-icon">🩸</div>
+            <h3>Análisis Bioquímicos Completos</h3>
+            <p>Perfiles metabólicos extensos que incluyen glucosa, hemoglobina glicosilada, lípidos, función renal y hepática, hormonas tiroideas y marcadores de inflamación.</p>
+          </div>
+          <div class="estudio-item">
+            <div class="estudio-icon">🚶‍♂️</div>
+            <h3>Test de Marcha</h3>
+            <p>Evaluación de capacidad funcional y respiratoria, guiada y supervisada por neumonólogos especializados para determinar tu condición física actual.</p>
+          </div>
+          <div class="estudio-item">
+            <div class="estudio-icon">📷</div>
+            <h3>Diagnóstico por Imágenes</h3>
+            <p>Estudios de alta precisión incluyendo radiografías, resonancias magnéticas, ecografías y tomografías para evaluación de órganos y estructuras internas.</p>
+          </div>
+          <div class="estudio-item">
+            <div class="estudio-icon">🔬</div>
+            <h3>Estudios Especializados</h3>
+            <p>Otras pruebas que requieran equipamiento específico según las necesidades individuales de cada persona, garantizando un diagnóstico completo.</p>
+          </div>
+        </div>
+        
+        <div class="colaboracion">
+          <p class="colaboracion-text">Todos estos estudios se realizan en colaboración con:</p>
+          <div class="sanatorio-logo">
+            <img src="https://static.wixstatic.com/media/8fa60c_0f5e70c180004436962570ed170c9585~mv2.png/v1/fill/w_500,h_500,al_c,q_85,enc_avif,quality_auto/8fa60c_0f5e70c180004436962570ed170c9585~mv2.png" alt="Sanatorio Garay" class="sanatorio-logo-img">
+            <p>Institución de referencia en la ciudad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios">
+    <h2>Testimonios de nuestras personas</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>Después de años luchando con mi diabetes, encontré en este programa el apoyo integral que necesitaba. He logrado reducir mi medicación y mejorar mi calidad de vida significativamente.</p>
+        <div class="testimonial-author">- Carlos M., 58 años</div>
+      </div>
+      <div class="testimonial">
+        <p>El enfoque interdisciplinario hizo la diferencia. No solo me ayudaron con mi alimentación, sino que entendieron mis dificultades emocionales con la comida. Por primera vez siento que puedo mantener los cambios a largo plazo.</p>
+        <div class="testimonial-author">- Laura R., 42 años</div>
+      </div>
+      <div class="testimonial">
+        <p>Me impresionó la calidad de los estudios complementarios. Por primera vez entendí completamente mi condición y recibí un plan realmente personalizado. En 6 meses he perdido 15 kg y normalizado mi presión arterial.</p>
+        <div class="testimonial-author">- Roberto S., 61 años</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Estás listo para dar el primer paso hacia una mejor salud metabólica?</p>
+    <p>Contáctanos para agendar tu evaluación inicial o resolver cualquier duda sobre nuestro programa.</p>
+    
+    <!-- Mapa de Google Maps -->
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3397.456789012345!2d-60.71000000000001!3d-31.6333333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b5ab965d0b3f3f%3A0x5f3c8c8c8c8c8c8c!2sBalcarce%202172%2C%20S3000%20Santa%20Fe%20Capital%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1234567890123!5m2!1ses!2sar" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    
+    <div class="cta">
+      <a class="btn" href="https://wa.me/543426130299" target="_blank">Escribinos por WhatsApp</a>
+      <a class="btn btn-secondary" href="tel:+543426130299">Llamanos por teléfono</a>
+      <p style="margin-top: 20px;">O envíanos un correo a: info@clinicaemic.com</p>
+      <p style="margin-top: 10px;">Visítanos en: Balcarce 2172, Santa Fe Capital</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Clínica EMIC</h3>
+        <p>Especialistas en Medicina Interna y tratamiento integral de enfermedades metabólicas con un enfoque interdisciplinario y personalizado.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Teléfono: +54 342 6130299</p>
+        <p>Email: info@clinicaemic.com</p>
+        <p>Dirección: Balcarce 2172, Santa Fe Capital</p>
+      </div>
+      <div class="footer-section">
+        <h3>Horarios de atención</h3>
+        <p>Lunes a Viernes: 8:00 - 20:00</p>
+        <p>Sábados: 9:00 - 13:00</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Clínica EMIC - Especialistas en Medicina Interna | Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    // Efecto de partículas dinámicas
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.querySelector('.particles');
+      
+      // Crear más partículas
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Posición aleatoria
+        const top = Math.random() * 100;
+        const left = Math.random() * 100;
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 8 + 2;
+        
+        // Duración de animación aleatoria
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 10;
+        
+        particle.style.top = `${top}%`;
+        particle.style.left = `${left}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+      
+      // Funcionalidad del menú lateral en móviles
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('show');
+      });
+      
+      // Cerrar menú al hacer clic en un enlace (solo en móviles)
+      if (window.innerWidth <= 768) {
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('show');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

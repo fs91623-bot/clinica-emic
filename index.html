@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica EMIC - Especialistas en Medicina Interna</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de colores basadas en la página PIEM */
+        :root {
+            --esmeralda-oscuro: #00695c;
+            --esmeralda-principal: #009688;
+            --esmeralda-claro: #4db6ac;
+            --esmeralda-muy-claro: #e0f2f1;
+            --texto-oscuro: #263238;
+            --texto-claro: #ffffff;
+            --gris-claro: #f5f5f5;
+            --dorado: #FFD700;
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+            background-color: var(--gris-claro);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--esmeralda-principal);
+            color: var(--texto-claro);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--esmeralda-oscuro);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--esmeralda-principal);
+            border: 2px solid var(--esmeralda-principal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--esmeralda-principal);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--esmeralda-oscuro);
+            font-size: 2.5rem;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--esmeralda-principal);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: var(--esmeralda-oscuro);
+            color: var(--texto-claro);
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--esmeralda-claro);
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .header-main .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--esmeralda-oscuro);
+        }
+
+        .logo-text span {
+            color: var(--esmeralda-principal);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            transition: color 0.3s;
+            color: var(--esmeralda-oscuro);
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--esmeralda-claro);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--esmeralda-claro);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--esmeralda-oscuro);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(135deg, rgba(0, 105, 92, 0.65) 0%, rgba(0, 150, 136, 0.65) 100%),
+                url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--texto-claro);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            font-weight: 300;
+        }
+
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            background-color: var(--esmeralda-principal);
+            color: white;
+            font-size: 2.5rem;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 30px 25px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--esmeralda-oscuro);
+            font-size: 1.6rem;
+        }
+
+        /* Sobre Nosotros */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            color: var(--esmeralda-oscuro);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Equipo Médico */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info h3 {
+            color: var(--esmeralda-oscuro);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
+        .member-info p {
+            color: var(--esmeralda-principal);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Programas Section */
+        .programs-section {
+            background-color: var(--esmeralda-muy-claro);
+            text-align: center;
+            border-radius: 12px;
+            padding: 60px 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+
+        .programs-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .programs-content h2 {
+            color: var(--esmeralda-oscuro);
+            margin-bottom: 20px;
+        }
+
+        .programs-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Rincón del Paciente */
+        .patient-corner {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            background-color: var(--esmeralda-muy-claro);
+            color: var(--esmeralda-oscuro);
+            border: 2px solid var(--esmeralda-claro);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--esmeralda-principal);
+            color: white;
+            border-color: var(--esmeralda-principal);
+        }
+
+        .faq-content {
+            display: none;
+        }
+
+        .faq-content.active {
+            display: block;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: var(--esmeralda-muy-claro);
+            color: var(--esmeralda-oscuro);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--esmeralda-claro);
+            color: white;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .recommendation-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .recommendation-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recommendation-card h3 {
+            color: var(--esmeralda-oscuro);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation-card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .recommendation-card li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* Sponsors */
+        .sponsors {
+            background-color: var(--gris-claro);
+            padding: 60px 0;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .sponsor-item {
+            text-align: center;
+            padding: 30px 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sponsor-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--esmeralda-principal), var(--esmeralda-claro));
+        }
+
+        .sponsor-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .sponsor-item img {
+            max-width: 150px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        /* Contacto */
+        .contact {
+            background-color: var(--gris-claro);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--esmeralda-oscuro);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-detail i {
+            color: var(--esmeralda-principal);
+            margin-right: 10px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--esmeralda-oscuro);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--esmeralda-muy-claro);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--esmeralda-oscuro);
+            color: var(--texto-claro);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: var(--esmeralda-claro);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--esmeralda-claro);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                display: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+
+            .programs-section {
+                padding: 40px 20px;
+            }
+
+            .faq-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/543425203307" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="contact-info">
+                    <div><i class="fas fa-map-marker-alt"></i> Balcarce 2172, Santa Fe Capital</div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/Fsn0WG5R/Chat-GPT-Image-25-oct-2025-15-54-53.png" alt="Logo Clínica EMIC">
+                    <div class="logo-text">CLÍNICA <span>EMIC</span></div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#equipo">Equipo Médico</a></li>
+                        <li class="dropdown">
+                            <a href="#programas">Programas <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="Programa PIEM.html">PIEM</a>
+                            </div>
+                        </li>
+                        <li><a href="#rincon">Rincón del Paciente</a></li>
+                        <li><a href="#sponsors">Sponsors</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Especialistas en Medicina Interna</h1>
+            <p>En Clínica EMIC brindamos atención médica integral con un enfoque personalizado y humano. Nuestro equipo de especialistas está comprometido con tu salud y bienestar.</p>
+            <a href="#contacto" class="btn">Solicitar Turno</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Consulta de Medicina Interna</h3>
+                        <p>Evaluación integral del paciente adulto, diagnóstico y tratamiento de enfermedades complejas.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Control de Enfermedades Crónicas</h3>
+                        <p>Seguimiento y manejo de condiciones como diabetes, hipertensión, enfermedades cardiovasculares y más.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Interconsulta Especializada</h3>
+                        <p>Coordinación con especialistas de diferentes áreas para un abordaje multidisciplinario.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Más de 20 años de experiencia en medicina interna</h2>
+                    <p>Clínica EMIC fue fundada en el año 2000 con el objetivo de brindar atención médica integral de excelencia en el área de medicina interna. Nuestro equipo está compuesto por médicos especialistas con amplia trayectoria y formación continua.</p>
+                    <p>Nos caracterizamos por un enfoque humanizado de la medicina, donde el paciente es el centro de nuestra atención. Creemos en la importancia de establecer una relación médico-paciente basada en la confianza, el respeto y la comunicación abierta.</p>
+                    <p>Nuestra clínica cuenta con tecnología de vanguardia para el diagnóstico y tratamiento, siempre priorizando la seguridad y comodidad de nuestros pacientes.</p>
+                    <a href="#equipo" class="btn">Conocer Nuestro Equipo</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.postimg.cc/nLrbHRjz/Medicina-Interna.jpg" alt="Medicina Interna - Clínica EMIC">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo Médico -->
+    <section id="equipo">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo Médico</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dra. Alejandra Gaydou">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Alejandra Gaydou</h3>
+                        <p>Especialista en Clínica Médica</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Juan Pablo Escobar">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Juan Pablo Escobar</h3>
+                        <p>Especialista en Medicina Interna</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1594824947933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dra. Macarena Dalla Fontana">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Macarena Dalla Fontana</h3>
+                        <p>Especialista en Medicina Interna</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Maximilian Rumschet">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Maximilian Rumschet</h3>
+                        <p>Especialista en Urología</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programas Section -->
+    <section class="programs-section" id="programas">
+        <div class="container">
+            <div class="programs-content">
+                <h2 class="section-title">Nuestros Programas Especializados</h2>
+                <p>En Clínica EMIC desarrollamos programas especializados para el abordaje integral de diferentes condiciones de salud. Conoce nuestras iniciativas diseñadas para brindar la mejor atención a nuestros pacientes.</p>
+                <a href="Programa PIEM.html" class="btn btn-secondary">Conocer Programa PIEM</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rincón del Paciente -->
+    <section class="patient-corner" id="rincon">
+        <div class="container">
+            <h2 class="section-title">Rincón del Paciente</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.2rem;">Encuentra respuestas a tus preguntas más frecuentes y recomendaciones para mantener tu salud</p>
+            
+            <!-- Preguntas Frecuentes -->
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="diabetes">Diabetes</button>
+                <button class="category-btn" data-category="hipertension">Hipertensión</button>
+                <button class="category-btn" data-category="obesidad">Obesidad</button>
+                <button class="category-btn" data-category="recomendaciones">Recomendaciones</button>
+            </div>
+
+            <!-- Diabetes FAQ -->
+            <div class="faq-content active" id="diabetes-faq">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué es la diabetes y cuáles son sus tipos principales?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La diabetes es una enfermedad crónica que se caracteriza por niveles elevados de glucosa en sangre. Los tipos principales son:</p>
+                        <ul>
+                            <li><strong>Diabetes tipo 1:</strong> El cuerpo no produce insulina</li>
+                            <li><strong>Diabetes tipo 2:</strong> El cuerpo no usa eficazmente la insulina</li>
+                            <li><strong>Diabetes gestacional:</strong> Aparece durante el embarazo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuáles son los síntomas de la diabetes?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los síntomas más comunes incluyen:</p>
+                        <ul>
+                            <li>Aumento de la sed y hambre constante</li>
+                            <li>Micción frecuente</li>
+                            <li>Pérdida de peso sin causa aparente</li>
+                            <li>Fatiga y visión borrosa</li>
+                            <li>Heridas que cicatrizan lentamente</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo se controla la diabetes?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El control de la diabetes incluye:</p>
+                        <ul>
+                            <li>Monitoreo regular de glucosa en sangre</li>
+                            <li>Alimentación balanceada y control de carbohidratos</li>
+                            <li>Actividad física regular</li>
+                            <li>Medicación según prescripción médica</li>
+                            <li>Controles médicos periódicos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hipertensión FAQ -->
+            <div class="faq-content" id="hipertension-faq">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué es la hipertensión arterial?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La hipertensión arterial es una condición médica en la que la presión en las arterias es persistentemente elevada. Se considera hipertensión cuando las mediciones son iguales o superiores a 140/90 mmHg.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué complicaciones puede causar la hipertensión no controlada?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La hipertensión no controlada puede llevar a:</p>
+                        <ul>
+                            <li>Enfermedades cardíacas y accidentes cerebrovasculares</li>
+                            <li>Daño renal y problemas de visión</li>
+                            <li>Deterioro cognitivo y demencia</li>
+                            <li>Aneurismas y enfermedad arterial periférica</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo puedo prevenir o controlar la hipertensión?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Medidas para controlar la hipertensión:</p>
+                        <ul>
+                            <li>Reducir el consumo de sal</li>
+                            <li>Mantener un peso saludable</li>
+                            <li>Realizar actividad física regular</li>
+                            <li>Limitar el consumo de alcohol</li>
+                            <li>No fumar y manejar el estrés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Obesidad FAQ -->
+            <div class="faq-content" id="obesidad-faq">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué se considera obesidad y cómo se mide?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La obesidad se define por un índice de masa corporal (IMC) igual o superior a 30. El IMC se calcula dividiendo el peso en kilogramos por la altura en metros al cuadrado.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué riesgos para la salud asociados tiene la obesidad?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La obesidad aumenta el riesgo de:</p>
+                        <ul>
+                            <li>Diabetes tipo 2 y enfermedades cardíacas</li>
+                            <li>Hipertensión arterial y accidentes cerebrovasculares</li>
+                            <li>Problemas articulares y apnea del sueño</li>
+                            <li>Ciertos tipos de cáncer</li>
+                            <li>Problemas psicológicos y baja autoestima</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuál es el enfoque adecuado para tratar la obesidad?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El tratamiento de la obesidad debe ser integral:</p>
+                        <ul>
+                            <li>Cambios en la alimentación con supervisión profesional</li>
+                            <li>Programa de actividad física gradual y sostenible</li>
+                            <li>Modificación de conductas y hábitos</li>
+                            <li>Apoyo psicológico cuando sea necesario</li>
+                            <li>En algunos casos, tratamiento farmacológico o quirúrgico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recomendaciones -->
+            <div class="faq-content" id="recomendaciones-faq">
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <h3><i class="fas fa-apple-alt"></i> Alimentación Saludable</h3>
+                        <ul>
+                            <li>Consume 5 porciones de frutas y verduras al día</li>
+                            <li>Prefiere cereales integrales sobre refinados</li>
+                            <li>Limita el consumo de azúcares y grasas saturadas</li>
+                            <li>Incluye proteínas magras en cada comida</li>
+                            <li>Mantén una hidratación adecuada con agua</li>
+                            <li>Controla el tamaño de las porciones</li>
+                        </ul>
+                    </div>
+                    <div class="recommendation-card">
+                        <h3><i class="fas fa-running"></i> Actividad Física</h3>
+                        <ul>
+                            <li>Realiza al menos 150 minutos de actividad moderada por semana</li>
+                            <li>Incluye ejercicios de fuerza 2-3 veces por semana</li>
+                            <li>Camina diariamente, usa las escaleras</li>
+                            <li>Encuentra actividades que disfrutes para mantener la constancia</li>
+                            <li>Consulta con tu médico antes de iniciar un programa intensivo</li>
+                            <li>Escucha a tu cuerpo y progresa gradualmente</li>
+                        </ul>
+                    </div>
+                    <div class="recommendation-card">
+                        <h3><i class="fas fa-heart"></i> Hábitos Saludables</h3>
+                        <ul>
+                            <li>Duerme 7-8 horas de calidad cada noche</li>
+                            <li>Maneja el estrés con técnicas de relajación</li>
+                            <li>No fumes y limita el consumo de alcohol</li>
+                            <li>Realiza controles médicos periódicos</li>
+                            <li>Mantén una red de apoyo social</li>
+                            <li>Establece metas realistas y celebra tus logros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section class="sponsors" id="sponsors">
+        <div class="container">
+            <h2 class="section-title">Nuestros Sponsors</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <img src="https://i.postimg.cc/jdjysyqN/unl.png" alt="UNL">
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://i.postimg.cc/1tPNbqYQ/garay.png" alt="Garay">
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://i.postimg.cc/zGgbBj9M/Bago.png" alt="Bago">
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://i.postimg.cc/SQ1Jf3qm/elea.png" alt="Elea">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>Balcarce 2172, Santa Fe Capital</div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <div>Lunes a Viernes: 8:00 - 20:00<br>Sábados: 9:00 - 13:00</div>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3399.760946967244!2d-60.70538832432957!3d-31.59330820266425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b5a9e45b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sBalcarce%202172%2C%20S3000%20Santa%20Fe%20Capital!5e0!3m2!1ses-419!2sar!4v1690000000000!5m2!1ses-419!2sar" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Solicitar Turno</h3>
+                    <form>
+                        <input type="text" placeholder="Nombre completo" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Teléfono" required>
+                        <select required>
+                            <option value="" disabled selected>Seleccione especialidad</option>
+                            <option value="medicina-interna">Medicina Interna</option>
+                            <option value="control-cronico">Control Enfermedades Crónicas</option>
+                            <option value="interconsulta">Interconsulta Especializada</option>
+                            <option value="urologia">Urología</option>
+                        </select>
+                        <textarea placeholder="Mensaje adicional (opcional)"></textarea>
+                        <button type="submit" class="btn">Enviar Solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Clínica EMIC</h3>
+                    <p>Especialistas en Medicina Interna con más de 20 años de experiencia brindando atención médica integral de excelencia.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Consulta de Medicina Interna</a></li>
+                        <li><a href="#">Control de Enfermedades Crónicas</a></li>
+                        <li><a href="#">Interconsulta Especializada</a></li>
+                        <li><a href="#">Urología</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#equipo">Equipo Médico</a></li>
+                        <li><a href="#programas">Programas</a></li>
+                        <li><a href="#rincon">Rincón del Paciente</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Balcarce 2172, Santa Fe Capital</li>
+                        <li><i class="fab fa-whatsapp"></i> 342 520-3307</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Clínica EMIC - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menú móvil
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Funcionalidad del Rincón del Paciente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Categorías FAQ
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const faqContents = document.querySelectorAll('.faq-content');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Remover clase active de todos los botones y contenidos
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    faqContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    // Mostrar el contenido correspondiente
+                    document.getElementById(`${category}-faq`).classList.add('active');
+                });
+            });
+            
+            // Preguntas FAQ individuales
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                    
+                    const icon = this.querySelector('i');
+                    if (faqItem.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
